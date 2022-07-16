@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:lottie/lottie.dart';
 import 'package:medi_app/controllers/db_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -103,12 +104,19 @@ class _MedicineRoutineState extends State<MedicineRoutine> {
                             );
                           })),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 40, right: 25, bottom: 10),
                       child: Row(
                         children: [
+                          SizedBox(
+                            height: 60,
+                            width: 50,
+                            child: Lottie.asset(
+                                'assets/lottiefile/checklist.json'),
+                          ),
+                          const SizedBox(width: 10),
                           const Text(
                             'My Activity',
                             style: TextStyle(
@@ -140,7 +148,7 @@ class _MedicineRoutineState extends State<MedicineRoutine> {
       onPressed: () {},
       style: ElevatedButton.styleFrom(primary: Colors.grey.shade300),
       child: Padding(
-        padding: const EdgeInsets.only(left: 12, top: 12, bottom: 12, right: 6),
+        padding: const EdgeInsets.only(left: 9, top: 12, bottom: 12, right: 6),
         child: Column(
           children: [
             Row(
@@ -149,7 +157,7 @@ class _MedicineRoutineState extends State<MedicineRoutine> {
                   'Medicine Number ${ind + 1}',
                   style: TextStyle(
                       color: Colors.deepPurple.shade900,
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold),
                 ),
                 const Spacer(),
@@ -160,7 +168,7 @@ class _MedicineRoutineState extends State<MedicineRoutine> {
                       'Edit',
                       style: TextStyle(
                           color: Colors.black,
-                          fontSize: 16,
+                          fontSize: 12,
                           fontWeight: FontWeight.bold),
                     )),
                 const SizedBox(width: 5),
@@ -170,7 +178,7 @@ class _MedicineRoutineState extends State<MedicineRoutine> {
                     Icons.delete_forever_rounded,
                   ),
                   color: Colors.red,
-                  iconSize: 38,
+                  iconSize: 30,
                 )
               ],
             ),
@@ -226,12 +234,35 @@ class _MedicineRoutineState extends State<MedicineRoutine> {
                       style: ElevatedButton.styleFrom(
                           primary: Colors.grey.shade100),
                       onPressed: () {},
-                      child: Text(
-                        note,
-                        style: TextStyle(
-                            color: Colors.grey.shade700,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 14),
+                          Row(
+                            children: const [
+                              Text(
+                                'Note',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            children: [
+                              Text(
+                                note,
+                                style: TextStyle(
+                                    color: Colors.grey.shade700,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                        ],
                       )),
                 ),
               ],

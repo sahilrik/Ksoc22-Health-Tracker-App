@@ -24,8 +24,7 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               children: [
                 Expanded(
-                  child: Lottie.network(
-                      'https://assets9.lottiefiles.com/packages/lf20_sop8cbmc.json'),
+                  child: Lottie.asset('assets/lottiefile/login_hello.json'),
                 ),
               ],
             ),
@@ -81,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Text(
-                                'Register',
+                                'Login',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 22,

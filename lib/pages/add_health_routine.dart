@@ -32,7 +32,7 @@ class _AddRoutineState extends State<AddRoutine> {
               padding: const EdgeInsets.all(6.0),
               child: customAppBar(),
             ),
-            const SizedBox(height: 60),
+            const SizedBox(height: 14),
             medname(),
             const SizedBox(height: 10),
             priceQuantity(),
@@ -85,10 +85,10 @@ class _AddRoutineState extends State<AddRoutine> {
   Widget medname() {
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15, bottom: 5),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(width: 2, color: col),
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          primary: Colors.grey.shade200,
         ),
         child: Padding(
           padding: const EdgeInsets.all(18.0),
@@ -110,7 +110,7 @@ class _AddRoutineState extends State<AddRoutine> {
                         ),
                       ),
                       Text(
-                        _name.text == '' ? 'Mfg. Company' : _name.text,
+                        _mfg.text == '' ? 'Mfg. Company' : _mfg.text,
                         style: TextStyle(
                           color: _name.text == ''
                               ? Colors.grey.shade600
@@ -122,14 +122,21 @@ class _AddRoutineState extends State<AddRoutine> {
                     ],
                   ),
                   const Spacer(),
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 2, color: Colors.black),
-                        borderRadius: BorderRadius.circular(7)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(6.0),
-                      child: Icon(Icons.file_download_outlined,
-                          color: Colors.grey.shade700, size: 38),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        critical = critical;
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 2, color: Colors.black),
+                          borderRadius: BorderRadius.circular(7)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Icon(Icons.file_download_outlined,
+                            color: Colors.grey.shade700, size: 38),
+                      ),
                     ),
                   )
                 ],
@@ -193,10 +200,11 @@ class _AddRoutineState extends State<AddRoutine> {
   Widget mednote() {
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15, bottom: 5),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(width: 2, color: col),
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          primary: Colors.grey.shade200,
+          // side: const BorderSide(color: Colors.black, width: 0.5),
         ),
         child: Padding(
           padding: const EdgeInsets.all(18.0),
@@ -208,7 +216,7 @@ class _AddRoutineState extends State<AddRoutine> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        _note.text == '' ? 'Special Instruction' : _name.text,
+                        _note.text == '' ? 'Special Instruction' : _note.text,
                         style: TextStyle(
                           color: _note.text == ''
                               ? Colors.grey.shade600
@@ -230,14 +238,21 @@ class _AddRoutineState extends State<AddRoutine> {
                     ],
                   ),
                   const Spacer(),
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 2, color: Colors.black),
-                        borderRadius: BorderRadius.circular(7)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(6.0),
-                      child: Icon(Icons.file_download_outlined,
-                          color: Colors.grey.shade700, size: 38),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        critical = critical;
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 2, color: Colors.black),
+                          borderRadius: BorderRadius.circular(7)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Icon(Icons.file_download_outlined,
+                            color: Colors.grey.shade700, size: 38),
+                      ),
                     ),
                   )
                 ],
@@ -306,10 +321,11 @@ class _AddRoutineState extends State<AddRoutine> {
   Widget priceQuantity() {
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15, bottom: 5),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(width: 2, color: col),
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          primary: Colors.grey.shade200,
+          // side: const BorderSide(color: Colors.black, width: 0.5),
         ),
         child: Padding(
           padding: const EdgeInsets.all(18.0),
@@ -343,14 +359,21 @@ class _AddRoutineState extends State<AddRoutine> {
                     ],
                   ),
                   const Spacer(),
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 2, color: Colors.black),
-                        borderRadius: BorderRadius.circular(7)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(6.0),
-                      child: Icon(Icons.file_download_outlined,
-                          color: Colors.grey.shade700, size: 38),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        critical = critical;
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 2, color: Colors.black),
+                          borderRadius: BorderRadius.circular(7)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Icon(Icons.file_download_outlined,
+                            color: Colors.grey.shade700, size: 38),
+                      ),
                     ),
                   )
                 ],
@@ -401,31 +424,29 @@ class _AddRoutineState extends State<AddRoutine> {
   }
 
   Widget customAppBar() {
-    return Container(
-      decoration: BoxDecoration(
-        color: col,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Row(
-          children: [
-            IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(FontAwesomeIcons.arrowLeftLong,
-                    color: Colors.white)),
-            const SizedBox(width: 18),
-            Text(
-              'Add Plan',
-              style: TextStyle(
-                  color: bg, fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            const Spacer(),
-            const Icon(Icons.help_outline_rounded, color: Colors.white),
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.only(left: 12.0, right: 12, top: 12),
+      child: Row(
+        children: [
+          IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(FontAwesomeIcons.arrowLeftLong,
+                  color: Colors.black)),
+          const SizedBox(width: 18),
+          const Text(
+            'Add Plan',
+            style: TextStyle(
+                color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+          const Spacer(),
+          const Icon(
+            Icons.add_card_rounded,
+            color: Colors.black,
+            size: 36,
+          ),
+        ],
       ),
     );
   }

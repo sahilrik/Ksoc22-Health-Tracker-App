@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttericon/iconic_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:medi_app/controllers/db_helper.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -13,77 +14,90 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   Color bg = Colors.white;
   Color col = const Color.fromARGB(203, 87, 14, 190);
-  final String name = "Saptarshi Mandal";
+  
   final String greet = "Morning";
+  DbHelper dbHelper = DbHelper();
+
+  String val = '';
+  Future getName() async {
+    String? name = await dbHelper.getName();
+
+    if (name != null) {
+      val = name;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: bg,
-          ),
-          toolbarHeight: 0),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 10, left: 5, right: 5, bottom: 10),
-          child: Column(
-            children: [
-              maincontainer(),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.only(left: 28, right: 28),
-                child: Row(
-                  children: [
-                    const Text(
-                      'Select your Medical Tools',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    const Spacer(),
-                    Text(
-                      'SEE ALL',
-                      style: TextStyle(
-                          color: col.withOpacity(0.7),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 15),
-              diseasegrid(),
-              const SizedBox(height: 40),
-              Padding(
-                padding: const EdgeInsets.only(left: 28, right: 28),
-                child: Row(
-                  children: [
-                    const Text(
-                      '''Today's Notification''',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    const Spacer(),
-                    Text(
-                      'SEE ALL',
-                      style: TextStyle(
-                          color: col.withOpacity(0.7),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+        appBar: AppBar(
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarColor: bg,
+            ),
+            toolbarHeight: 0),
+        body: SingleChildScrollView(
+          child: FutureBuilder(
+              future: getName(),
+              builder: ((context, snapshot) {
+                return Padding(
+                  padding: const EdgeInsets.only(
+                      top: 10, left: 5, right: 5, bottom: 10),
+                  child: Column(
+                    children: [
+                      maincontainer(),
+                      const SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 28, right: 28),
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Select your Medical Tools',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            const Spacer(),
+                            Text(
+                              'SEE ALL',
+                              style: TextStyle(
+                                  color: col.withOpacity(0.7),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      diseasegrid(),
+                      const SizedBox(height: 40),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 28, right: 28),
+                        child: Row(
+                          children: [
+                            const Text(
+                              '''Today's Notification''',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            const Spacer(),
+                            Text(
+                              'SEE ALL',
+                              style: TextStyle(
+                                  color: col.withOpacity(0.7),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              })),
+        ));
   }
 
   Widget element(IconData ic, String text) {
@@ -210,7 +224,7 @@ class _DashboardState extends State<Dashboard> {
                 const SizedBox(
                   width: 28,
                 ),
-                Text('$name!',
+                Text(val,
                     style: TextStyle(
                         color: bg, fontWeight: FontWeight.bold, fontSize: 30)),
               ],

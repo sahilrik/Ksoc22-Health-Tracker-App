@@ -22,8 +22,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
   List<IconData> iconList = [
     FontAwesomeIcons.houseMedicalCircleCheck,
     FontAwesomeIcons.heartPulse,
-    Icons.health_and_safety_rounded,
-    Icons.settings_outlined,
+    Icons.checklist_rounded,
+    Icons.settings_rounded
   ];
   int _pageIndex = 0;
 

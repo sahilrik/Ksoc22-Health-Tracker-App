@@ -21,6 +21,14 @@ class _RoutineListState extends State<RoutineList> {
 
   Color bg = Colors.white;
   Color col = const Color.fromARGB(203, 87, 14, 190);
+  String val = '';
+  Future getName() async {
+    String? name = await dbHelper.getName();
+
+    if (name != null) {
+      val = name;
+    }
+  }
 
   @override
   void initState() {
@@ -67,92 +75,86 @@ class _RoutineListState extends State<RoutineList> {
       appBar: AppBar(
         toolbarHeight: 0,
       ),
-      body: FutureBuilder<Map>(
-          future: fetch(),
+      body: FutureBuilder(
+          future: getName(),
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              getval(snapshot.data!);
-
-              return ListView(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(6.0),
-                    child: customAppBar,
-                  ),
-                  const SizedBox(height: 4),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 25, right: 25),
-                    child: Row(
-                      children: [
-                        Icon(Icons.admin_panel_settings_outlined,
-                            color: col, size: 32),
-                        const SizedBox(width: 14),
-                        Text('July 16,2022',
-                            style: TextStyle(
-                                color: Colors.grey.shade500, fontSize: 18)),
-                        const Spacer(),
-                        Icon(Icons.emoji_people, color: col, size: 32)
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 25, right: 25),
-                    child: Row(
-                      children: [
-                        const Text(
-                          'Hi Saptarshi! ',
+            return ListView(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: customAppBar,
+                ),
+                const SizedBox(height: 4),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25, right: 25),
+                  child: Row(
+                    children: [
+                      Icon(Icons.admin_panel_settings_outlined,
+                          color: col, size: 32),
+                      const SizedBox(width: 14),
+                      Text('July 16,2022',
                           style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 23,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(width: 10),
-                        SizedBox(
-                          height: 80,
-                          width: 70,
-                          child: Lottie.network(
-                              'https://assets7.lottiefiles.com/packages/lf20_221k5lrw.json'),
-                        )
-                      ],
-                    ),
+                              color: Colors.grey.shade500, fontSize: 18)),
+                      const Spacer(),
+                      Icon(Icons.emoji_people, color: col, size: 32)
+                    ],
                   ),
-                  const SizedBox(height: 20),
-                  statwidget(),
-                  const SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15, right: 15),
-                    child: Row(
-                      children: [
-                        const Text(
-                          'Health Tips',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(width: 16),
-                        const Icon(Icons.tips_and_updates_outlined,
-                            color: Colors.black, size: 24),
-                        const Spacer(),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(FontAwesomeIcons.forwardStep),
-                          color: Colors.black,
-                          iconSize: 24,
-                        )
-                      ],
-                    ),
+                ),
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25, right: 25),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Hi $val',
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 23,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(width: 10),
+                      SizedBox(
+                        height: 80,
+                        width: 70,
+                        child:
+                            Lottie.asset('assets/lottiefile/waving_hand.json'),
+                      )
+                    ],
                   ),
-                  // (snapshot.data!.length > 3)
-                  //     ? deck()
-                  //     : const SizedBox(height: 0, width: 0),
-                  const SizedBox(height: 10),
-                ],
-              );
-            } else {
-              return Container();
-            }
+                ),
+                const SizedBox(height: 20),
+                statwidget(),
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 15),
+                  child: Row(
+                    children: [
+                      const Text(
+                        'Health Tips',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(width: 16),
+                      const Icon(FontAwesomeIcons.notesMedical,
+                          color: Colors.black, size: 26),
+                      const Spacer(),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.navigate_next_rounded),
+                        color: Colors.black,
+                        iconSize: 36,
+                      )
+                    ],
+                  ),
+                ),
+                // (snapshot.data!.length > 3)
+                //     ? deck()
+                //     : const SizedBox(height: 0, width: 0),
+                const SizedBox(height: 30),
+              ],
+            );
           }),
     );
   }
@@ -205,7 +207,7 @@ class _RoutineListState extends State<RoutineList> {
                       fontSize: 14,
                       fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(width: 50),
+                const Spacer(),
                 Column(
                   children: [
                     const SizedBox(height: 20),
@@ -268,20 +270,16 @@ class _RoutineListState extends State<RoutineList> {
           padding: const EdgeInsets.all(12.0),
           child: Column(children: [
             Row(
-              children: [
-                const Text(
+              children: const [
+                Text(
                   'Sleep',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold),
                 ),
-                const Spacer(),
-                SizedBox(
-                    height: 70,
-                    width: 50,
-                    child: Lottie.network(
-                        'https://assets1.lottiefiles.com/packages/lf20_dnp2c83r.json'))
+                Spacer(),
+                Icon(Icons.alarm_off_rounded, color: Colors.white, size: 25)
               ],
             ),
             const SizedBox(height: 20),
