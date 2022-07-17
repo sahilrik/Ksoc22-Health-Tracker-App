@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:medi_app/controllers/db_helper.dart';
+import 'package:medi_app/pages/welcome_screen.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -45,8 +47,12 @@ class _SettingsState extends State<Settings> {
                   ),
                   const SizedBox(height: 20),
                   Padding(
-                    padding: const EdgeInsets.only(left: 30, right: 25),
+                    padding: const EdgeInsets.only(left: 20, right: 18),
                     child: profilesection(user_name),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 18),
+                    child: exitwidget(),
                   )
                 ],
               ),
@@ -55,48 +61,101 @@ class _SettingsState extends State<Settings> {
         ));
   }
 
-  Widget profilesection(String name) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14),
-          gradient: LinearGradient(colors: [
-            Colors.lightGreenAccent.shade100,
-            Colors.lightGreenAccent.shade100.withOpacity(0.6),
-          ])),
-      child: Padding(
-        padding: const EdgeInsets.all(14.0),
-        child: Column(
-          children: [
-            Row(
-              children:  [
+  Widget exitwidget() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 6, left: 1, right: 0, bottom: 6),
+      child: ElevatedButton(
+          onPressed: () {
+             Navigator.of(context).push(CupertinoPageRoute(
+                          builder: ((context) => WelcomeScreen())));
+          },
+          style: ElevatedButton.styleFrom(primary: Colors.black),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
                 Text(
-                  'Profile',
+                  'Exit',
                   style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 21,
+                      color: Colors.white,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold),
                 ),
-                Spacer(),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.grey.shade200
-                  ),
-                  onPressed: (){}, child: Text('Edit'))
+                SizedBox(width: 10),
+                Icon(Icons.exit_to_app_rounded, size: 34)
               ],
             ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                Text(
-                  name,
-                  style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 21,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            )
-          ],
+          )),
+    );
+  }
+
+  Widget profilesection(String name) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 6, left: 1, right: 0, bottom: 6),
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          primary: Colors.grey.shade300,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  const Text(
+                    'Profile',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 21,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const Spacer(),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(primary: Colors.white),
+                      onPressed: () {},
+                      child: const Text(
+                        'Edit',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
+                      ))
+                ],
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'User Name',
+                        style: TextStyle(
+                            color: col,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        name,
+                        style: TextStyle(
+                            color: Colors.grey.shade800,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  SizedBox(
+                    height: 100,
+                    width: 90,
+                    child: Lottie.asset('assets/lottiefile/settings.json'),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

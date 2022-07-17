@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:medi_app/controllers/db_helper.dart';
+import 'package:medi_app/pages/navigationbar.dart';
 import 'package:medi_app/pages/welcome_screen.dart';
 
 class LoginPage extends StatefulWidget {
@@ -72,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                           DbHelper dbHelper = DbHelper();
                           await dbHelper.addName(name.text);
                           Navigator.of(context).push(CupertinoPageRoute(
-                              builder: ((context) => const WelcomeScreen())));
+                              builder: ((context) => const BottomNavBar())));
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),

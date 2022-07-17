@@ -14,7 +14,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   Color bg = Colors.white;
   Color col = const Color.fromARGB(203, 87, 14, 190);
-  
+
   final String greet = "Morning";
   DbHelper dbHelper = DbHelper();
 
@@ -75,12 +75,12 @@ class _DashboardState extends State<Dashboard> {
                         padding: const EdgeInsets.only(left: 28, right: 28),
                         child: Row(
                           children: [
-                            const Text(
+                            Text(
                               '''Today's Notification''',
                               style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500),
+                                  color: Colors.deepPurple.shade900,
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.bold),
                             ),
                             const Spacer(),
                             Text(
@@ -93,6 +93,74 @@ class _DashboardState extends State<Dashboard> {
                           ],
                         ),
                       ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(left: 28, top: 10, right: 28),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Colors.deepPurple.shade100),
+                                  onPressed: () {},
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Acute Coronary Syndrome',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors
+                                                      .deepPurple.shade500,
+                                                  fontSize: 14),
+                                            ),
+                                            const Spacer(),
+                                            Icon(
+                                              Icons.cancel_outlined,
+                                              color: Colors.deepPurple.shade400,
+                                            )
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            ElevatedButton(
+                                              onPressed: () {},
+                                              style: ElevatedButton.styleFrom(
+                                                  primary: Colors
+                                                      .deepPurpleAccent
+                                                      .shade100),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(6),
+                                                child: Text(
+                                                  'Critical'.toUpperCase(),
+                                                  style: TextStyle(
+                                                      color: Colors
+                                                          .deepPurple.shade900,
+                                                      fontSize: 11,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  )),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 );
@@ -179,7 +247,7 @@ class _DashboardState extends State<Dashboard> {
               children: [
                 const SizedBox(width: 12),
                 Icon(Iconic.doc_inv_alt, color: bg, size: 26),
-                Text('    MediTrack '.toUpperCase(),
+                Text('    HEALTH TRACKER '.toUpperCase(),
                     style: TextStyle(
                         color: bg, fontSize: 18, fontWeight: FontWeight.bold)),
                 const Spacer(),

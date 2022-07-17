@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:medi_app/controllers/db_helper.dart';
+import 'package:medi_app/pages/loading_screens/welcome_to_navbar_loading.dart';
 import 'package:medi_app/pages/login_page.dart';
-import 'package:medi_app/pages/navigationbar.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           builder: ((context, snapshot) {
             return Column(
               children: [
-                const SizedBox(height: 50),
+                const SizedBox(height: 30),
                 Row(
                   children: [
                     Expanded(
@@ -43,51 +43,23 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.only(left: 50, right: 50),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.black,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14)),
-                            ),
-                            onPressed: () {
-                              if (user_name != '') {
-                                Navigator.of(context).push(CupertinoPageRoute(
-                                    builder: ((context) =>
-                                        const BottomNavBar())));
-                              }
-                              else
-                              {
-                                Navigator.of(context).push(CupertinoPageRoute(
-                                    builder: ((context) =>
-                                        const LoginPage())));
-                              }
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Text(
-                                    'Get Started',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Icon(Icons.navigate_next_sharp,
-                                      color: Colors.white, size: 34),
-                                ],
-                              ),
-                            )),
-                      ),
-                    ],
+                GestureDetector(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30, right: 30),
+                    child: SizedBox(
+                        height: 200,
+                        child:
+                            Lottie.asset('assets/lottiefile/get-started.json')),
                   ),
+                  onTap: () {
+                    if (user_name != '') {
+                      Navigator.of(context).push(CupertinoPageRoute(
+                          builder: ((context) => const WelcomeScreenLoad())));
+                    } else {
+                      Navigator.of(context).push(CupertinoPageRoute(
+                          builder: ((context) => const LoginPage())));
+                    }
+                  },
                 )
               ],
             );

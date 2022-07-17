@@ -94,7 +94,7 @@ class _RoutineListState extends State<RoutineList> {
                       const SizedBox(width: 14),
                       Text('July 16,2022',
                           style: TextStyle(
-                              color: Colors.grey.shade500, fontSize: 18)),
+                              color: Colors.grey.shade800, fontSize: 18)),
                       const Spacer(),
                       Icon(Icons.emoji_people, color: col, size: 32)
                     ],
@@ -270,16 +270,20 @@ class _RoutineListState extends State<RoutineList> {
           padding: const EdgeInsets.all(12.0),
           child: Column(children: [
             Row(
-              children: const [
-                Text(
+              children: [
+                const Text(
                   'Sleep',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold),
                 ),
-                Spacer(),
-                Icon(Icons.alarm_off_rounded, color: Colors.white, size: 25)
+                const Spacer(),
+                SizedBox(
+                  height: 70,
+                  width: 60,
+                  child: Lottie.asset('assets/lottiefile/sleep.json'),
+                )
               ],
             ),
             const SizedBox(height: 20),

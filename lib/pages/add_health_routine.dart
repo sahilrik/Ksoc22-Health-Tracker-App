@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:medi_app/controllers/db_helper.dart';
+import 'package:medi_app/pages/loading_screens/loading_screen_add_medicine.dart';
+import 'package:medi_app/pages/sucess_screens/add_medicine_success.dart';
 
 class AddRoutine extends StatefulWidget {
   const AddRoutine({Key? key}) : super(key: key);
@@ -52,7 +55,8 @@ class _AddRoutineState extends State<AddRoutine> {
                           DbHelper dbhelper = DbHelper();
                           dbhelper.addData(_name.text, int.parse(_price.text),
                               int.parse(_quantity.text), _note.text, critical);
-                          Navigator.pop(context);
+                          Navigator.of(context).push(CupertinoPageRoute(
+                          builder: ((context) => const LoadingScreenAddMedicine())));
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
@@ -88,7 +92,7 @@ class _AddRoutineState extends State<AddRoutine> {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          primary: Colors.grey.shade200,
+          primary: Colors.grey.shade300,
         ),
         child: Padding(
           padding: const EdgeInsets.all(18.0),
@@ -122,21 +126,18 @@ class _AddRoutineState extends State<AddRoutine> {
                     ],
                   ),
                   const Spacer(),
-                  GestureDetector(
-                    onTap: () {
+                  ElevatedButton(
+                    onPressed: () {
                       setState(() {
                         critical = critical;
                       });
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 2, color: Colors.black),
-                          borderRadius: BorderRadius.circular(7)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(6.0),
-                        child: Icon(Icons.file_download_outlined,
-                            color: Colors.grey.shade700, size: 38),
-                      ),
+                    style:
+                        ElevatedButton.styleFrom(primary: Colors.grey.shade100),
+                    child: Padding(
+                      padding: const EdgeInsets.all(1.0),
+                      child: Icon(Icons.file_download_outlined,
+                          color: Colors.grey.shade700, size: 38),
                     ),
                   )
                 ],
@@ -155,40 +156,44 @@ class _AddRoutineState extends State<AddRoutine> {
                 ],
               ),
               const SizedBox(height: 20),
-              TextField(
-                controller: _name,
-                cursorColor: col,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                    hintText: 'Medicine',
-                    labelText: 'Medicine Name',
-                    labelStyle: const TextStyle(fontSize: 20),
-                    border: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black, width: 5)),
-                    prefixIcon: Icon(
-                      Icons.add_circle_outline_sharp,
-                      color: col,
-                      size: 22,
-                    )),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(primary: Colors.grey.shade200),
+                child: TextField(
+                  controller: _name,
+                  cursorColor: col,
+                  style: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                  decoration: InputDecoration(
+                      hintText: 'Medicine',
+                      labelText: 'Medicine Name',
+                      labelStyle: const TextStyle(fontSize: 20),
+                      prefixIcon: Icon(
+                        Icons.add_circle_outline_sharp,
+                        color: col,
+                        size: 22,
+                      )),
+                ),
               ),
               const SizedBox(height: 10),
-              TextField(
-                controller: _mfg,
-                cursorColor: col,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                    hintText: 'Mfg Company',
-                    labelText: 'Company Name',
-                    labelStyle: const TextStyle(fontSize: 20),
-                    border: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black, width: 5)),
-                    prefixIcon: Icon(
-                      Icons.add_circle_outline_sharp,
-                      color: col,
-                      size: 22,
-                    )),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.grey.shade200),
+                onPressed: () {},
+                child: TextField(
+                  controller: _mfg,
+                  cursorColor: col,
+                  style: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                  decoration: InputDecoration(
+                      hintText: 'Mfg Company',
+                      labelText: 'Manufacturer Name',
+                      labelStyle: const TextStyle(fontSize: 20),
+                      prefixIcon: Icon(
+                        Icons.add_circle_outline_sharp,
+                        color: col,
+                        size: 22,
+                      )),
+                ),
               ),
             ],
           ),
@@ -203,7 +208,7 @@ class _AddRoutineState extends State<AddRoutine> {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          primary: Colors.grey.shade200,
+          primary: Colors.grey.shade300,
           // side: const BorderSide(color: Colors.black, width: 0.5),
         ),
         child: Padding(
@@ -238,60 +243,61 @@ class _AddRoutineState extends State<AddRoutine> {
                     ],
                   ),
                   const Spacer(),
-                  GestureDetector(
-                    onTap: () {
+                  ElevatedButton(
+                    onPressed: () {
                       setState(() {
                         critical = critical;
                       });
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 2, color: Colors.black),
-                          borderRadius: BorderRadius.circular(7)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(6.0),
-                        child: Icon(Icons.file_download_outlined,
-                            color: Colors.grey.shade700, size: 38),
-                      ),
+                    style:
+                        ElevatedButton.styleFrom(primary: Colors.grey.shade100),
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Icon(Icons.file_download_outlined,
+                          color: Colors.grey.shade700, size: 38),
                     ),
                   )
                 ],
               ),
               const SizedBox(height: 20),
               const SizedBox(height: 20),
-              TextField(
-                controller: _note,
-                cursorColor: col,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                    hintText: 'Instructions',
-                    labelText: 'Additional Advisory',
-                    labelStyle: const TextStyle(fontSize: 20),
-                    border: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black, width: 5)),
-                    prefixIcon: Icon(
-                      Icons.add_circle_outline_sharp,
-                      color: col,
-                      size: 22,
-                    )),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(primary: Colors.grey.shade200),
+                child: TextField(
+                  controller: _note,
+                  cursorColor: col,
+                  style: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                  decoration: InputDecoration(
+                      hintText: 'Instructions',
+                      labelText: 'Additional Advisory',
+                      labelStyle: const TextStyle(fontSize: 20),
+                      prefixIcon: Icon(
+                        Icons.add_circle_outline_sharp,
+                        color: col,
+                        size: 22,
+                      )),
+                ),
               ),
               const SizedBox(height: 10),
-              TextField(
-                cursorColor: col,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                    hintText: 'Note',
-                    labelText: 'Instructions',
-                    labelStyle: const TextStyle(fontSize: 20),
-                    border: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black, width: 5)),
-                    prefixIcon: Icon(
-                      Icons.add_circle_outline_sharp,
-                      color: col,
-                      size: 22,
-                    )),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(primary: Colors.grey.shade200),
+                child: TextField(
+                  cursorColor: col,
+                  style: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                  decoration: InputDecoration(
+                      hintText: 'Note',
+                      labelText: 'Instructions',
+                      labelStyle: const TextStyle(fontSize: 20),
+                      prefixIcon: Icon(
+                        Icons.add_circle_outline_sharp,
+                        color: col,
+                        size: 22,
+                      )),
+                ),
               ),
               const SizedBox(height: 10),
               CheckboxListTile(
@@ -324,7 +330,7 @@ class _AddRoutineState extends State<AddRoutine> {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          primary: Colors.grey.shade200,
+          primary: Colors.grey.shade300,
           // side: const BorderSide(color: Colors.black, width: 0.5),
         ),
         child: Padding(
@@ -359,62 +365,63 @@ class _AddRoutineState extends State<AddRoutine> {
                     ],
                   ),
                   const Spacer(),
-                  GestureDetector(
-                    onTap: () {
+                  ElevatedButton(
+                    onPressed: () {
                       setState(() {
                         critical = critical;
                       });
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 2, color: Colors.black),
-                          borderRadius: BorderRadius.circular(7)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(6.0),
-                        child: Icon(Icons.file_download_outlined,
-                            color: Colors.grey.shade700, size: 38),
-                      ),
+                    style:
+                        ElevatedButton.styleFrom(primary: Colors.grey.shade100),
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Icon(Icons.file_download_outlined,
+                          color: Colors.grey.shade700, size: 38),
                     ),
                   )
                 ],
               ),
               const SizedBox(height: 20),
-              TextField(
-                controller: _price,
-                keyboardType: TextInputType.number,
-                cursorColor: col,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                    hintText: 'Price',
-                    labelText: 'Medicine Cost',
-                    labelStyle: const TextStyle(fontSize: 20),
-                    border: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black, width: 5)),
-                    prefixIcon: Icon(
-                      Icons.add_circle_outline_sharp,
-                      color: col,
-                      size: 22,
-                    )),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(primary: Colors.grey.shade200),
+                child: TextField(
+                  controller: _price,
+                  keyboardType: TextInputType.number,
+                  cursorColor: col,
+                  style: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                  decoration: InputDecoration(
+                      hintText: 'Price',
+                      labelText: 'Medicine Cost',
+                      labelStyle: const TextStyle(fontSize: 20),
+                      prefixIcon: Icon(
+                        Icons.add_circle_outline_sharp,
+                        color: col,
+                        size: 22,
+                      )),
+                ),
               ),
               const SizedBox(height: 10),
-              TextField(
-                controller: _quantity,
-                keyboardType: TextInputType.number,
-                cursorColor: col,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                    hintText: 'Quantity',
-                    labelText: 'Number of Pills',
-                    labelStyle: const TextStyle(fontSize: 20),
-                    border: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black, width: 5)),
-                    prefixIcon: Icon(
-                      Icons.add_circle_outline_sharp,
-                      color: col,
-                      size: 22,
-                    )),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(primary: Colors.grey.shade200),
+                child: TextField(
+                  controller: _quantity,
+                  keyboardType: TextInputType.number,
+                  cursorColor: col,
+                  style: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                  decoration: InputDecoration(
+                      hintText: 'Quantity',
+                      labelText: 'Number of Pills',
+                      labelStyle: const TextStyle(fontSize: 20),
+                      prefixIcon: Icon(
+                        Icons.add_circle_outline_sharp,
+                        color: col,
+                        size: 22,
+                      )),
+                ),
               ),
             ],
           ),

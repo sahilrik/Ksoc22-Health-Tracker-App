@@ -148,7 +148,7 @@ class _MedicineRoutineState extends State<MedicineRoutine> {
       onPressed: () {},
       style: ElevatedButton.styleFrom(primary: Colors.grey.shade300),
       child: Padding(
-        padding: const EdgeInsets.only(left: 9, top: 12, bottom: 12, right: 6),
+        padding: const EdgeInsets.only(left: 9, top: 12, bottom: 12, right: 2),
         child: Column(
           children: [
             Row(
@@ -163,7 +163,8 @@ class _MedicineRoutineState extends State<MedicineRoutine> {
                 const Spacer(),
                 ElevatedButton(
                     onPressed: () {},
-                    style: ElevatedButton.styleFrom(primary: Colors.grey),
+                    style:
+                        ElevatedButton.styleFrom(primary: Colors.grey.shade200),
                     child: const Text(
                       'Edit',
                       style: TextStyle(
@@ -171,9 +172,12 @@ class _MedicineRoutineState extends State<MedicineRoutine> {
                           fontSize: 12,
                           fontWeight: FontWeight.bold),
                     )),
-                const SizedBox(width: 5),
+                const SizedBox(width: 3),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await dbHelper.deleteData(ind);
+                    setState(() {});
+                  },
                   icon: const Icon(
                     Icons.delete_forever_rounded,
                   ),
